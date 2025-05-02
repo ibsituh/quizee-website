@@ -1,29 +1,54 @@
-import data from './data.json' assert {type:'json'};
+const questions = [
+    {
+        question:"Who is founder of facebook?",
+        answers: [
+            { text:  "Elon Musk", correct: false},
+            { text:  "Mark Zuckerberg", correct: true},
+            { text:  "Ritest Agarwal", correct: false},
+            { text:  "Steve Jobs", correct: false},
+        ]
+    },
+    {
+        question:"Who is the father of the computer?",
+        answers: [
+            { text:  "Elon Musk", correct: false},
+            { text:  "Mark Zuckerberg", correct: true},
+            { text:  "Ritest Agarwal", correct: false},
+            { text:  "Charles Babbage", correct: false},
+        ] 
+    },
+    {
+        question:"What is the full form of E-mail?",
+        answers: [
+            { text:  "Electric Mail", correct: false},
+            { text:  "Electronic Mail", correct: true},
+            { text:  "Exchange Mail", correct: false},
+            { text:  "Engagement Mail", correct: false},
+        ]
+    },
+    {
+        question:"In the virtual world, WWW stands for?",
+        answers: [
+            { text:  "World Without Windows", correct: false},
+            { text:  "World Wide Web", correct: true},
+            { text:  "World Wide Web Application", correct: false},
+            { text:  "World Wide Warehouse", correct: false},
+        ]
+    }
+];
 
-const noOfQues = data.length;
-const eachQuestion = document.getElementById("question");
-const qa = document.getElementById("qa");
-const answerButtons = document.getElementById("answerbtn");
+const questionElement = document.getElementById("question");
+const answerButton = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
 
-
-const currentIndex = 0;
+let currentQuestionIndex = 0;
 let score = 0;
 
-function showEachQuestion(){
+function startQuiz(){
+    currentQuestionIndex = 0;
+    score = 0
     nextButton.innerHTML = "Next";
-    qa.style.display = "block";
-    let currentQues = data[currentIndex];
-    eachQuestion.innerHTML = (currentIndex+1)+" "+currentQues.question;
-    for(let i=0;i<4;i++){
-        const button = document.createElement("button");
-        let optionNumber = String.fromCharCode(65+i);
-        button.innerHTML = data[currentIndex][optionNumber];
-        button.classList.add("btn");
-        answerButtons.appendChild(button);
-    }
+    showQuestion();
 }
 
-nextButton.addEventListener('click',()=>{
-    showEachQuestion();
-})
+
